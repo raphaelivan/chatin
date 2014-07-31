@@ -1,5 +1,9 @@
 #!/usr/bin/env node
+<<<<<<< HEAD
 var debug = require('debug')('chatin');
+=======
+var debug = require('debug')('ntalk');
+>>>>>>> fc43ce63899086995d51636454133657b29962af
 var app = require('../app');
 
 app.set('port', process.env.PORT || 3000);
