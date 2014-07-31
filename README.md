@@ -1,3 +1,3 @@
 Chatin
 ====================================
-![Chatin](/public/images/chatin.png "Chatin")
+![Chatin](/assets/images/chatin.png "Chatin")
