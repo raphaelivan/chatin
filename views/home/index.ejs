@@ -6,10 +6,10 @@
     <div class='col-md-2'></div>
     <div class='col-md-8'>
       <section>
-        <form action="/" method="get" role='form'>
-          <input type="text" name="name" placeholder="Your Name" class='form-control'>
+        <form action="/login" method="post" role='form'>
+          <input type="text" name="user[name]" placeholder="Your Name" class='form-control'>
           <br>
-          <input type="text" name="email" placeholder="Your E-mail" class='form-control'>
+          <input type="text" name="user[email]" placeholder="Your E-mail" class='form-control'>
           <br>
           <button type="submit" class='btn  btn-success btn-block'>Sign in / Sign out</button>
         </form>
