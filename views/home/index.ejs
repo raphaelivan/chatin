@@ -1,34 +1,20 @@
-<!DOCTYPE html>
-<html>
-  <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> Chatin </title>
-  <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" type="text/css" href="/stylesheets/bootstrap.css">
-  <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
-  </head>
-  <body>
-    <div class='container'>
-      <div class='row'>
-        <h1 class='logo'> Chatin </h1>
-        <h4> Create contacts list </h4>
-        <div class='col-md-2'></div>
-        <div class='col-md-8'>
-
-          <section>
-            <form action="/" method="get" role='form'>
-              <input type="text" name="name" placeholder="Your Name" class='form-control'>
-              <br>
-              <input type="text" name="email" placeholder="Your E-mail" class='form-control'>
-              <br>
-              <button type="submit" class='btn  btn-success btn-block'>Sign in / Sign out</button>
-            </form>
-          </section>
-        </div>
-
-      </div>
-
+<% include ../header %>
+<div class='container'>
+  <div class='row'>
+    <h1 class='logo'> Chatin </h1>
+    <h4> Create contacts list </h4>
+    <div class='col-md-2'></div>
+    <div class='col-md-8'>
+      <section>
+        <form action="/" method="get" role='form'>
+          <input type="text" name="name" placeholder="Your Name" class='form-control'>
+          <br>
+          <input type="text" name="email" placeholder="Your E-mail" class='form-control'>
+          <br>
+          <button type="submit" class='btn  btn-success btn-block'>Sign in / Sign out</button>
+        </form>
+      </section>
     </div>
-  </body>
-</html>
+  </div>
+</div>
+<% include ../footer %>
