@@ -7,11 +7,11 @@ var
   app            = express();
 
 
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
-app.use(bodyParser.json({ type: 'application/vnd.api+json' }))
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
 
-app.use(session({keys: ['key1', 'key2']}))
+app.use(session({keys: ['key1', 'key2']}));
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
