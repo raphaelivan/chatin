@@ -1,15 +1,19 @@
 <% include ../header %>
 <% include ../exit %>
-<section>
-  <form action='/contact/<%- id %>' method='post'>
-    <input type='hidden' name='_method' value='put'>
-    <label>Name:</label>
-    <input type='text' name='contact[name]'
-                       value='<%- contact.name %>'>
-    <label>E-mail:</label>
-    <input type='text' name='contact[email]'
-                       value='<%- contact.email %>'>
-    <button type='submit'>Update</button>
-  </form>
-</section>
+<div class='container'>
+  <div class='row'>
+    <section>
+      <form action='/contact/<%- id %>' method='post'>
+        <input type="hidden" value="put" name="_method"></input>
+        <label>Name:</label>
+        <input type='text' name='contact[name]'
+                           value='<%- contact.name %>'>
+        <label>E-mail:</label>
+        <input type='text' name='contact[email]'
+                           value='<%- contact.email %>'>
+        <button type='submit' class='btn btn-sm btn-success'>Update</button>
+      </form>
+    </section>
+    </div>
+</div>
 <% include ../footer %>

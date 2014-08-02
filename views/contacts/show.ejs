@@ -3,7 +3,8 @@
 <div class='container'>
   <div class='row'>
   <section>
-    <form action='/contact/<%- id %>' method='delete'>
+    <form action='/contact/<%- id %>' method='post'>
+      <input type="hidden" value="delete" name="_method"></input>
       <p><label>Name:</label><%- contact.name %></p>
       <p><label>E-mail:</label><%- contact.email %></p>
       <p>
