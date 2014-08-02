@@ -1,0 +1,15 @@
+<% include ../header %>
+<% include ../exit %>
+<section>
+  <form action='/contact/<%- id %>' method='post'>
+    <input type='hidden' name='_method' value='put'>
+    <label>Name:</label>
+    <input type='text' name='contact[name]'
+                       value='<%- contact.name %>'>
+    <label>E-mail:</label>
+    <input type='text' name='contact[email]'
+                       value='<%- contact.email %>'>
+    <button type='submit'>Update</button>
+  </form>
+</section>
+<% include ../footer %>

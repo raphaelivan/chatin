@@ -1,9 +1,40 @@
 <% include ../header %>
+<% include ../exit %>
+
 <div class='container'>
   <div class='row'>
-    <h1> Contacts </h1>
-    <p> <%= user %> </p>
+    <h2> Contacts </h2>
+
+    <div class='col-md-4'>
+      <form action='/contact' method='post' role='form'>
+        <input type='text' name='contact[name]' placeholder='Name' class='form-control'>
+        <input type='text' name='contact[email]' placeholder='E-mail' class='form-control'>
+
+        <button type='submit' class='btn btn-sm btn-success'>Salve</button>
+      </form>
+    </div>
+
+    <div class='col-md-8'>
+    <table class='table'>
+      <thead>
+         <tr>
+           <th>Name</th>
+           <th>E-mail</th>
+           <th>Actions</th>
+         </tr>
+      </thead>
+      <tbody>
+        <% contacts.forEach( function(contact, index) { %>
+          <tr>
+            <td><%= contact.name %></td>
+            <td><%= contact.email %></td>
+            <td> <a href="/contact/<%- index %>">Detalhes</a> </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+    </div>
   </div>
 </div>
-<% include ../exit %>
+
 <% include ../footer %>
