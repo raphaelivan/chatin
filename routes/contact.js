@@ -1,10 +1,12 @@
 module.exports = function (app) {
-  var contact = app.controllers.contact;
+  var
+    authenticate = require('./../midleware/authenticator'),
+    contact        = app.controllers.contact;
 
-  app.get('/contacts', contact.index);
-  app.get('/contact/:id', contact.show);
-  app.get('/contact/:id/edit', contact.edit );
-  app.post('/contact', contact.create);
-  app.put('/contact/:id', contact.update);
-  app.delete('/contact/:id', contact.destroy);
+  app.get('/contacts', authenticate, contact.index);
+  app.get('/contact/:id', authenticate, contact.show);
+  app.get('/contact/:id/edit', authenticate, contact.edit );
+  app.post('/contact', authenticate, contact.create);
+  app.put('/contact/:id', authenticate, contact.update);
+  app.delete('/contact/:id', authenticate, contact.destroy);
 };
