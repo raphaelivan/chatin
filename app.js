@@ -2,8 +2,9 @@ var
   express      = require('express'),
   app          = express(),
   load         = require('express-load'),
+  http         = require('http'),
   error        = require('./midleware/error'),
-  server       = require('http').createServer(app),
+  server       = http.createServer(app),
   io           = require('socket.io').listen(server),
   path         = require('path'),
   bodyParser   = require('body-parser'),
@@ -27,6 +28,8 @@ load('models')
 // app.use(error.notFound);
 // app.use(error.errorHandler);
 
+server.listen(3000);
+
 io.sockets.on('connection', function (client) {
   client.on('send-server', function (data) {
     var msg = "<b>"+data.name+":</b> "+data.msg+"<br>";
@@ -35,8 +38,8 @@ io.sockets.on('connection', function (client) {
   });
 });
 
-server.listen(app.get('port'), function () {
-  console.log('Server UP!');
-});
+// server.listen(app.get('port'), function () {
+//   console.log('Server UP!');
+// });
 
 module.exports = app;
