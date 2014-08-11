@@ -1,11 +1,13 @@
 var
   express      = require('express'),
-  path           = require('path'),
-  bodyParser = require('body-parser'),
-  session       = require('cookie-session'),
-  load           = require('express-load'),
-  error          = require('./midleware/error'),
-  app            = express();
+  app          = express(),
+  load         = require('express-load'),
+  error        = require('./midleware/error'),
+  server       = require('http').createServer(app),
+  io           = require('socket.io').listen(server),
+  path         = require('path'),
+  bodyParser   = require('body-parser'),
+  session      = require('cookie-session');
 
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -22,7 +24,19 @@ load('models')
   .then('routes')
   .into(app);
 
-app.use(error.notFound);
-app.use(error.errorHandler);
+// app.use(error.notFound);
+// app.use(error.errorHandler);
+
+io.sockets.on('connection', function (client) {
+  client.on('send-server', function (data) {
+    var msg = "<b>"+data.name+":</b> "+data.msg+"<br>";
+    client.emit('send-client', msg);
+    client.broadcast.emit('send-client', msg);
+  });
+});
+
+server.listen(app.get('port'), function () {
+  console.log('Server UP!');
+});
 
 module.exports = app;

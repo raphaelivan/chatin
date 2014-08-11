@@ -1,0 +1,20 @@
+<% include ../header %>
+<% include ../exit %>
+<div class='container'>
+  <div class='row'>
+    <h2> Chat </h2>
+    <div class='col-md-4'></div>
+
+    <div class='col-md-8'>
+      <section>
+        <pre id="chat"></pre>
+        <input type="hidden" id="name" value="<%- user.name %>" class='form-control'>
+        <input type="text" id="msg" placeholder="Mensagem" class='form-control'>
+        <button id='send' class='btn btn-lg btn-success'>Send</button>
+        <a href='/contacts' class='btn btn-sm btn-info'> Back </a>
+      </section>
+    </div>
+  </div>
+</div>
+  <script src='/javascripts/chat_form.js'></script>
+<% include ../footer %>
