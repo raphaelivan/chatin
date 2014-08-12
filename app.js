@@ -10,7 +10,6 @@ var
   bodyParser   = require('body-parser'),
   session      = require('cookie-session');
 
-
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
@@ -25,21 +24,12 @@ load('models')
   .then('routes')
   .into(app);
 
-// app.use(error.notFound);
-// app.use(error.errorHandler);
+load('sockets')
+  .into(io);
+
+app.use(error.notFound);
+app.use(error.errorHandler);
 
 server.listen(3000);
-
-io.sockets.on('connection', function (client) {
-  client.on('send-server', function (data) {
-    var msg = "<b>"+data.name+":</b> "+data.msg+"<br>";
-    client.emit('send-client', msg);
-    client.broadcast.emit('send-client', msg);
-  });
-});
-
-// server.listen(app.get('port'), function () {
-//   console.log('Server UP!');
-// });
 
 module.exports = app;
