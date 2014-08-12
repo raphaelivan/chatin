@@ -1,6 +1,8 @@
 module.exports = function (io) {
   io.sockets.on('connection', function (client) {
     var user;
+    client.broadcast.emit('user-connected');
+
     client.on('send-server', function (data) {
       user = data.name;
 

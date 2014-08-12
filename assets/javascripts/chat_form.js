@@ -41,5 +41,9 @@ socket.on('stop-typing', function (user) {
 });
 
 socket.on('client-disconnect', function (user) {
-  $chat.innerHTML +=  '<b>' + user + ' left the rom</b>';
+  $chat.innerHTML +=  '<b>' + user + ' left the rom</b></br>';
+});
+
+socket.on('user-connected', function () {
+  $chat.innerHTML += '<b> A user entered the room</b></br>';
 });
