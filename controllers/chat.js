@@ -7,6 +7,12 @@ module.exports = function (app) {
       }
 
       res.render('chat/index', params);
+    },
+
+    left: function (req, res) {
+      var params = { user: req.session.user };
+
+      res.render('contacts');
     }
   }
 

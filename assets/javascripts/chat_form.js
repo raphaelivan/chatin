@@ -1,9 +1,12 @@
-var socket = io.connect();
-var $msg   = document.getElementById('msg');
-var $name  = document.getElementById('name').value;
+var
+  socket = io.connect(),
+  $msg   = document.getElementById('msg'),
+  $name  = document.getElementById('name').value,
+  $util  = document.getElementById('util'),
+  $chat  = document.getElementById('chat');
 
 socket.on('send-client', function (msg) {
-  document.getElementById('chat').innerHTML += msg;
+  $chat.innerHTML += msg;
 });
 
 var send = function () {
@@ -30,9 +33,13 @@ $msg.onblur = function () {
 };
 
 socket.on('typing', function (user) {
-  document.getElementById('util').innerHTML = user.name +' is typing...';
+  $util.innerHTML = user.name +' is typing...';
 });
 
 socket.on('stop-typing', function (user) {
-  document.getElementById('util').innerHTML = '';
+  $util.innerHTML = '';
+});
+
+socket.on('client-disconnect', function (user) {
+  $chat.innerHTML +=  '<b>' + user + ' left the rom</b>';
 });
