@@ -11,3 +11,7 @@ h4 {
   font-family: 'Lobster', cursive;
   color: #a4a4a4;
 }
+
+#chat .icon {
+  width: 21px;
+}

@@ -1,4 +1,6 @@
 module.exports = function (io) {
+  var EMOJI = require('../emoji').icons;
+
   io.sockets.on('connection', function (client) {
     var user;
     client.broadcast.emit('user-connected');
@@ -6,9 +8,16 @@ module.exports = function (io) {
     client.on('send-server', function (data) {
       user = data.name;
 
-      var msg = "<b>"+data.name+":</b> "+data.msg+"<br>";
-      client.emit('send-client', msg);
-      client.broadcast.emit('send-client', msg);
+
+      if (data.msg.match(/&*&/) !== -1) {
+        var icon = data.msg.split(/[&&]/)[1];
+        var msg  = data.msg.replace('&'+ icon +'&', "<img class='icon' src='/images/icons/" + EMOJI[icon] +"' alt='like'>");
+      }
+
+      var html = "<b>"+data.name+":</b> "+ msg +"<br>";
+
+      client.emit('send-client', html);
+      client.broadcast.emit('send-client', html);
     });
 
     client.on('client-typing', function (data) {
