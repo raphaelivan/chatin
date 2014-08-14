@@ -3,13 +3,13 @@
 <div class='container'>
   <div class='row'>
   <section>
-    <form action='/contact/<%- id %>' method='post'>
+    <form action='/contact/<%- contact._id %>' method='post'>
       <input type="hidden" value="delete" name="_method"></input>
       <p><label>Name:</label><%- contact.name %></p>
       <p><label>E-mail:</label><%- contact.email %></p>
       <p>
         <button type='submit' class='btn btn-sm btn-danger'>Delete</button>
-        <a href='/contact/<%- id %>/edit' class='btn btn-sm btn-info'>Edit</a>
+        <a href='/contact/<%- contact._id %>/edit' class='btn btn-sm btn-info'>Edit</a>
       </p>
   </form>
 </section>

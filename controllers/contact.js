@@ -1,63 +1,61 @@
 module.exports = function (app) {
+  var User  = app.models.user;
+
   var ContactController = {
     index:  function (req, res) {
       var
-        user      = req.session.user,
-        contacts = user.contacts,
-        params = {
-          user: user,
-          contacts: contacts
-        };
+        _id   = req.session.user._id;
+
+      User.findById(_id, function (error, user) {
+        var
+          contacts = user.contacts,
+          params   = { contacts: contacts };
 
         res.render('contacts/index', params);
+      });
     },
 
     create: function (req, res) {
-      var
-        user     = req.session.user,
-        contact = req.body.contact;
-      user.contacts.push(contact);
-      res.redirect('/contacts');
+      var _id = req.session.user._id;
+
+      User.findById(_id, function (error, user) {
+        user.contacts.push(req.body.contact);
+        user.save( function () {
+          res.redirect('/contacts');
+        });
+      });
     },
 
     show: function (req, res) {
-      var
-        id         = req.params.id,
-        contact = req.session.user.contacts[id],
-        params = {
-          id: id,
-          contact: contact
-        }
+      var _id = req.session.user._id;
 
-        res.render('contacts/show', params);
+      User.findById(_id, function (error, user) {
+        var
+          contactId = req.params.id,
+          contact   = user.contacts.id(contactId);
+          res.render('contacts/show', { contact: contact });
+      });
     },
 
     edit: function (req, res) {
-      var
-        id         = req.params.id,
-        user      = req.session.user,
-        contact =  user.contacts[id],
-        params = {
-          id: id,
-          user: user,
-          contact: contact
-        }
+      var _id = req.session.user._id;
 
-      res.render('contacts/edit', params);
+      User.findById(_id, function (error, user) {
+        var
+          contactId = req.params.id,
+          contact   = user.contacts.id(contactId);
+
+        res.render('contacts/edit', { contact: contact });
+      });
     },
 
     update: function (req, res) {
-      var
-        id         = req.params.id,
-        contact = req.body.contact;
+     // do nothing
+     res.redirect('/contacts');
     },
 
     destroy: function (req, res) {
-      var
-        id     = req.params.id,
-        user = req.session.user;
-
-      user.contacts.slice(id, 1);
+     // do nothing
       res.redirect('/contacts');
     }
   }
