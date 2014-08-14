@@ -14,6 +14,7 @@
     "ejs": "~0.8.5",
     "express": "",
     "express-load": "^1.1.14",
+    "mongoose": "^3.8.14",
     "morgan": "~1.0.0",
     "socket.io": "",
     "static-favicon": "~1.0.0"
