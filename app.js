@@ -10,9 +10,6 @@ var
   bodyParser   = require('body-parser'),
   session      = require('cookie-session'),
   mongoose     = require('mongoose');
-
-global.db = mongoose.connect('mongodb://localhost/chatin');
-
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
