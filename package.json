@@ -4,7 +4,8 @@
   "private": true,
   "author": "Raphael Ivan",
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "test": "NODE_ENV=test node ./node_modules/mocha/bin/mocha spec/*.js"
   },
   "dependencies": {
     "body-parser": "~1.0.0",
@@ -20,5 +21,11 @@
     "redis": "^0.12.1",
     "socket.io": "",
     "static-favicon": "~1.0.0"
+  },
+
+  "devDependencies" : {
+    "mocha": "*",
+    "supertest": "*",
+    "should": "*"
   }
 }
