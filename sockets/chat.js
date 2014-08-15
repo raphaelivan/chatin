@@ -1,9 +1,13 @@
 module.exports = function (io) {
-  var EMOJI = require('../emoji').icons;
+  var
+    EMOJI = require('../emoji').icons,
+    redis = require('redis').createClient();
 
   io.sockets.on('connection', function (client) {
     var user;
     client.broadcast.emit('user-connected');
+
+    loadHistoryMensagens(client);
 
     client.on('send-server', function (data) {
       user = data.name;
@@ -18,6 +22,8 @@ module.exports = function (io) {
 
       client.emit('send-client', html);
       client.broadcast.emit('send-client', html);
+
+      redis.lpush('room', html);
     });
 
     client.on('client-typing', function (data) {
@@ -32,4 +38,13 @@ module.exports = function (io) {
       client.broadcast.emit('client-disconnect', user);
     });
   });
+
+
+  function loadHistoryMensagens (client) {
+   redis.lrange('room', 0, -1, function (error, msgs) {
+        msgs.forEach(function (msg) {
+          client.emit('send-client', msg);
+        });
+      });
+  };
 };

@@ -14,8 +14,10 @@
     "ejs": "~0.8.5",
     "express": "",
     "express-load": "^1.1.14",
+    "hiredis": "^0.1.17",
     "mongoose": "^3.8.14",
     "morgan": "~1.0.0",
+    "redis": "^0.12.1",
     "socket.io": "",
     "static-favicon": "~1.0.0"
   }
