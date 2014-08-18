@@ -1,6 +1,5 @@
 var
   app     = require('../app'),
-  mocha   = require('mocha'),
   request = require('supertest')(app);
 
 describe('Session Crontol', function () {

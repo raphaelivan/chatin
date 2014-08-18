@@ -1,6 +1,5 @@
 var
   app     = require('../app'),
-  should  = require('should'),
   request = require('supertest')(app);
 
 describe('Controller Contacts', function (){
